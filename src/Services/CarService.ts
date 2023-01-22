@@ -24,8 +24,10 @@ export default class CarService {
   }
 
   public async getCarById(id: string) {
+    console.log(id);
     const model = new CarModel();
     const car = await model.findById(id);
+    console.log(car);
     if (!car) {
       return null;
     }
