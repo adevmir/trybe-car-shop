@@ -15,7 +15,7 @@ export default class Car {
       doorsQty: { type: 'number', required: true },
       seatsQty: { type: 'number', required: true },
     });
-    this.model = model('Cars', this.schema);
+    this.model = model('Car', this.schema);
   }
 
   public async create(car: ICar): Promise<ICar> {
@@ -27,6 +27,6 @@ export default class Car {
   }
 
   public async findById(id: string): Promise<ICar | null> {
-    return this.model.findOne({ id });
+    return this.model.findOne({ _id: id });
   }
 }
