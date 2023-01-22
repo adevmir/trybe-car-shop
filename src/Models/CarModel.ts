@@ -15,7 +15,7 @@ export default class Car {
       doorsQty: { type: 'number', required: true },
       seatsQty: { type: 'number', required: true },
     });
-    this.model = model('cars', this.schema);
+    this.model = model('Cars', this.schema);
   }
 
   public async create(car: ICar): Promise<ICar> {
