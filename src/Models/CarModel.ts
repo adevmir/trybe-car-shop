@@ -1,4 +1,4 @@
-import { Schema, model, Model } from 'mongoose';
+import { Schema, model, Model, models } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 
 export default class Car {
@@ -15,7 +15,7 @@ export default class Car {
       doorsQty: { type: 'number', required: true },
       seatsQty: { type: 'number', required: true },
     });
-    this.model = model('Car', this.schema);
+    this.model = models.Car || model('Car', this.schema);
   }
 
   public async create(car: ICar): Promise<ICar> {
