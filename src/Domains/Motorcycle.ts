@@ -1,4 +1,4 @@
-import IMotorcycle from '../Interfaces/IMotorycle';
+import IMotorcycle from "../Interfaces/IMotorcycle";
 
 class Motorcycle {
   protected id: string | undefined;

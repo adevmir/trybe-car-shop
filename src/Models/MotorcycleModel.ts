@@ -1,5 +1,5 @@
 import { Schema, model, Model, models } from 'mongoose';
-import IMotorcycle from '../Interfaces/IMotorycle';
+import IMotorcycle from "../Interfaces/IMotorcycle";
 
 export default class Motorcycle {
   private schema: Schema;
