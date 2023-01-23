@@ -1,12 +1,10 @@
-import { Schema, model, Model, models, UpdateQuery } from 'mongoose';
+import { Schema } from 'mongoose';
 import ICar from '../Interfaces/ICar';
+import AbstractODM from './AbstractODM';
 
-export default class Car {
-  private schema: Schema;
-  private model: Model<ICar>;
-
+export default class Car extends AbstractODM<ICar> {
   constructor() {
-    this.schema = new Schema<ICar>({
+    const schema = new Schema<ICar>({
       model: { type: 'string', required: true },
       year: { type: 'number', required: true },
       color: { type: 'string', required: true },
@@ -15,37 +13,6 @@ export default class Car {
       doorsQty: { type: 'number', required: true },
       seatsQty: { type: 'number', required: true },
     });
-    this.model = models.Car || model('Car', this.schema);
-  }
-
-  public async create(car: ICar): Promise<ICar> {
-    return this.model.create({ ...car });
-  }
-
-  public async getAll(): Promise<ICar[]> {
-    return this.model.find();
-  }
-
-  public async findById(id: string): Promise<ICar | null> {
-    return this.model.findById(id);
-  }
-
-  // public async uptadeById(id: string, req: Request): Promise<ICar | null> {
-  //   const { year, color, status, buyValue, doorsQty, seatsQty } = req.body;
-  //   const newCar = await this.model.findOne({ _id: id });
-  //   if (newCar) {
-  //     await newCar.overwrite({
-  //       model: req.body.model,
-  //       year,
-  //       color,
-  //       status,
-  //       buyValue,
-  //       doorsQty,
-  //       seatsQty });
-  //   }
-
-  public async update(id: string, body: ICar): Promise<ICar | null> {
-    return this.model
-      .findOneAndUpdate({ _id: id }, { ...body } as UpdateQuery<ICar>);
+    super(schema, 'car');
   }
 }
