@@ -1,4 +1,4 @@
-import { Schema, model, Model, models } from 'mongoose';
+import { Schema, model, Model, models, UpdateQuery } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 
 export default class Car {
@@ -28,5 +28,24 @@ export default class Car {
 
   public async findById(id: string): Promise<ICar | null> {
     return this.model.findById(id);
+  }
+
+  // public async uptadeById(id: string, req: Request): Promise<ICar | null> {
+  //   const { year, color, status, buyValue, doorsQty, seatsQty } = req.body;
+  //   const newCar = await this.model.findOne({ _id: id });
+  //   if (newCar) {
+  //     await newCar.overwrite({
+  //       model: req.body.model,
+  //       year,
+  //       color,
+  //       status,
+  //       buyValue,
+  //       doorsQty,
+  //       seatsQty });
+  //   }
+
+  public async update(id: string, body: ICar): Promise<ICar | null> {
+    return this.model
+      .findOneAndUpdate({ _id: id }, { ...body } as UpdateQuery<ICar>);
   }
 }
