@@ -23,7 +23,6 @@ const response = {
   engineCapacity: 160 };
 
 describe('Testa se MotorcycleService funciona corretamente', function () {
-  beforeEach(function () { sinon.restore(); });
   it('Testa se e possivel cadastrar uma moto', async function () {
     sinon.stub(MotorcycleModel.prototype, 'create').resolves(response);
     const service = new MotorcycleService();
