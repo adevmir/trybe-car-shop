@@ -22,4 +22,13 @@ export default class MotorcycleService {
     const Motorcycles = await model.getAll();
     return Motorcycles.map((c) => this.createMotorcycleDomain(c));
   }
+
+  public async getMotorcycleById(id: string) {
+    const model = new MotorcycleModel();
+    const motorcycle = await model.findById(id);
+    if (!motorcycle) {
+      return null;
+    }
+    return this.createMotorcycleDomain(motorcycle);
+  }
 }

@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { Types } from 'mongoose';
 import MotorcycleService from '../Services/MotorcycleService';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 
@@ -23,5 +24,17 @@ export default class MotorcycleController {
   public async getMotorcycles() {
     const getMotorcycles = await this.service.getMotorcycles();
     return this.res.status(200).json(getMotorcycles);
+  }
+
+  public async getMotorcycleById() {
+    const { id } = this.req.params;
+    if (!Types.ObjectId.isValid(id)) {
+      return this.res.status(422).json({ message: 'Invalid mongo id' }); 
+    }
+    const motorcycle = await this.service.getMotorcycleById(id);
+    if (motorcycle === null) {
+      return this.res.status(404).json({ message: 'Motorcycle not found' });
+    }
+    return this.res.status(200).json(motorcycle);
   }
 }
