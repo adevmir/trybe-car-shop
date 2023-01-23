@@ -5,6 +5,6 @@ import motorcycleRouter from './MotorcycleRoutes';
 const routes = Router();
 
 routes.use('/cars', carRouter);
-routes.use('motorcycles', motorcycleRouter);
+routes.use('/motorcycles', motorcycleRouter);
 
 export default routes;
