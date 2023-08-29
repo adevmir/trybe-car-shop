@@ -28,7 +28,7 @@ Nesse projeto, apliquei os conceitos de programação orientada a objetos (<code
 Clone o projeto:
 
 ```
-git clone git@github.com:adevmir/Car-Shop.git
+git clone git@github.com:adevmir/trybe-car-shop.git
 ```
 Vá para o diretório do projeto:
 
